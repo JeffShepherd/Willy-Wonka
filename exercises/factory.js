@@ -1,6 +1,5 @@
-//
-// var Willy = require('./willy');
-// var Kid = require('./kid');
+
+
 
 class Factory {
   constructor(willyObject) {

@@ -1,6 +1,6 @@
 var assert = require('chai').assert;
 var Factory = require('../exercises/factory');
-var Willy = require('../exercises/willy');
+var Willy = require('../exercises/willy'); //remove in beginning?
 var Kid = require('../exercises/kid');
 
 describe('Factory', function() {
@@ -58,7 +58,7 @@ describe('Factory', function() {
     var kid3 = new Kid('Augustus');
     var kid5 = new Kid('veruca');
     var kid6 = new Kid('Violet');
-    var kid7 = new Kid('Mike');
+    var kid7 = new Kid('mike');
     var kid8 = new Kid('Sampson');
 
     kid1.findTicket();
@@ -83,8 +83,6 @@ describe('Factory', function() {
 
 
   });//^this is done + solved
-
-  it.skip('should ')
 
 });
 
@@ -121,5 +119,50 @@ describe('Willy', function() {
   it('should be a function', function() {
     assert.isFunction(Willy);
   });//^this is done + solved
+
+  it('should remove kid from tour if they misbehave', function() {
+    var willy = new Willy('Wonka');
+    var factory1 = new Factory(willy);//add args to confuse?
+    var kid1 = new Kid('charlie');
+    var kid2 = new Kid('Augustus');
+    var kid3 = new Kid('veruca');
+    var kid4 = new Kid('Violet');
+    var kid5 = new Kid('mike');
+
+    kid1.findTicket();
+    kid2.findTicket();
+    kid3.findTicket();
+    kid4.findTicket();
+    kid5.findTicket();
+    factory1.addToTour(kid1);
+    factory1.addToTour(kid2);
+    factory1.addToTour(kid3);
+    factory1.addToTour(kid4);
+    factory1.addToTour(kid5);
+
+    assert.instanceOf(factory1.kidsOnTour[0], Kid)
+
+    assert.equal(willy.punishKid(factory1.kidsOnTour, "David"), "Onward!!")
+    assert.deepEqual(willy.punishKid(factory1.kidsOnTour, "Mike"), [kid1, kid2, kid3, kid4])
+  });
+
+  it('should blast off in the Wonkavator if there is one kid left named Charlie', function() {
+    var willy = new Willy('Wonka', 8);
+    var factory1 = new Factory(willy);//add args to confuse?
+    var kid1 = new Kid('charlie');
+    var kid2 = new Kid('Augustus');
+
+    kid1.findTicket();
+    kid2.findTicket();
+    factory1.addToTour(kid1);
+    factory1.addToTour(kid2);
+
+    assert.equal(willy.blastOff(factory1.kidsOnTour), "I can't give my factory to more than one person!")
+
+    factory1.kidsOnTour = willy.punishKid(factory1.kidsOnTour, "Augustus");
+
+    assert.equal(willy.blastOff(factory1.kidsOnTour), "Go ahead Charlie, press the button" );
+
+  });
 
 });
