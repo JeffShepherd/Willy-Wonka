@@ -1,11 +1,11 @@
 var assert = require('chai').assert;
 var Factory = require('../exercises/factory');
-var Willy = require('../exercises/willy'); //remove in beginning?
-var Kid = require('../exercises/kid');
+
+
 
 describe('Factory', function() {
 
-  it('should be a function', function() {
+  it.only('should be a function', function() {
     assert.isFunction(Factory)
   });
 
@@ -19,7 +19,7 @@ describe('Factory', function() {
     assert.equal(factory2.name, 'Boring Factory');
     assert.equal(factory1.name, 'Boring Factory');
     assert.equal(factory3.name, 'Chocolate Factory');
-  });//^this is done + solved
+  });
 
   it('should start with Oompa-Loompas in the Chocolate Factory', function() {
     var willy = new Willy('Wonka', 7)
@@ -27,7 +27,7 @@ describe('Factory', function() {
 
     assert.equal(factory.name, 'Chocolate Factory');
     assert.equal(factory.oompaLoompas, 27);
-  });//^this is done + solved
+  });
 
   it('should start with no kids on the tour', function() {
     var willy = new Willy('Wonka')
@@ -35,10 +35,10 @@ describe('Factory', function() {
 
     assert.equal(willy.oompaLoompas, 0)
     assert.deepEqual(factory.kidsOnTour, [])
-  });//^this is done + solved
+  });
 
   it('should be added to tour if they have golden ticket', function() {
-    var willy = new Willy('Wonka');//add args to confuse?
+    var willy = new Willy('Wonka');
     var factory = new Factory(willy);
     var kid1 = new Kid('simon');
     var kid2 = new Kid('Charlie');
@@ -49,11 +49,11 @@ describe('Factory', function() {
 
     assert.instanceOf(factory.kidsOnTour[0], Kid)
     assert.equal(factory.kidsOnTour[0].name, 'Charlie')
-  });//make charlie have to be capitalized?
+  });
 
   it('should be able to accept five kids on the tour', function() {
     var willy = new Willy('Wonka');
-    var factory1 = new Factory(willy);//add args to confuse?
+    var factory1 = new Factory(willy);
     var kid1 = new Kid('charlie');
     var kid3 = new Kid('Augustus');
     var kid5 = new Kid('veruca');
@@ -82,7 +82,7 @@ describe('Factory', function() {
     assert.equal(factory1.kidsOnTour[4].name, "Mike")
 
 
-  });//^this is done + solved
+  });
 
 });
 
@@ -91,24 +91,24 @@ describe('Kid', function() {
 
   it('should be a function', function() {
     assert.isFunction(Kid);
-  });//^this is done + solved
+  });
 
   it('should have a name', function() {
     var kid = new Kid('peter');
 
-    assert.equal(kid.name, 'Peter');//must capitalize name?
-  });//^this is done + solved
+    assert.equal(kid.name, 'Peter');
+  });
 
   it('should only have a golden ticket if they find it', function() {
     var kid1 = new Kid('Peter');
-    var kid2 = new Kid('charlie');//must capitalize name?
+    var kid2 = new Kid('charlie');
 
     kid2.findTicket();
 
     assert.equal(kid1.goldenTicket, false);
     assert.equal(kid2.name, 'Charlie')
     assert.equal(kid2.goldenTicket, true);
-  });//^this is done + solved
+  });
 
 
 });
@@ -118,11 +118,11 @@ describe('Willy', function() {
 
   it('should be a function', function() {
     assert.isFunction(Willy);
-  });//^this is done + solved
+  });
 
   it('should remove kid from tour if they misbehave', function() {
     var willy = new Willy('Wonka');
-    var factory1 = new Factory(willy);//add args to confuse?
+    var factory1 = new Factory(willy);
     var kid1 = new Kid('charlie');
     var kid2 = new Kid('Augustus');
     var kid3 = new Kid('veruca');
@@ -148,7 +148,7 @@ describe('Willy', function() {
 
   it('should blast off in the Wonkavator if there is one kid left named Charlie', function() {
     var willy = new Willy('Wonka', 8);
-    var factory1 = new Factory(willy);//add args to confuse?
+    var factory1 = new Factory(willy);
     var kid1 = new Kid('charlie');
     var kid2 = new Kid('Augustus');
 
